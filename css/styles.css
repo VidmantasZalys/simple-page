@@ -13,11 +13,22 @@ body {
   justify-content: center;
   align-items: center;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='46' height='46' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(22)'%3E%3Crect width='100%25' height='100%25' fill='rgba(244, 241, 222,1)'/%3E%3Ccircle cx='20' cy='20' r='1' fill='%231a202c'/%3E%3Ccircle cx='20' cy='20' r='1' fill='rgba(61, 64, 91,1)'/%3E%3Ccircle cx='-20' cy='20' r='1' fill='rgba(61, 64, 91,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
+  background-attachment: fixed;
+}
+h1 {
+  font-family: "Bebas Neue", cursive;
+  padding: 5rem 0rem 1rem 0rem;
+  letter-spacing: 1rem;
 }
 .container {
   width: 1200px;
   height: auto;
-  margin-top: 40px;
+}
+/* HEADER */
+header {
+  width: 100%;
+  height: auto;
+  margin-top: 5rem;
 }
 /* NAV */
 nav {
@@ -63,11 +74,6 @@ nav a {
   border-radius: 5px;
   margin-top: 3rem;
 }
-.banner .text h1 {
-  font-family: "Bebas Neue", cursive;
-  padding: 1rem 0rem 1rem 0rem;
-  letter-spacing: 1rem;
-}
 .banner .text q {
   font-style: italic;
   padding: 2rem 0rem 2rem 0rem;
@@ -101,4 +107,62 @@ nav a {
 .projects {
   background-color: #f4f1de;
   border: #f2cc8f 1px solid;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 1200px;
+  height: auto;
+  text-align: center;
+}
+
+.projects ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1200px;
+  height: auto;
+}
+.projects li img {
+  width: 15rem;
+  height: 15rem;
+  margin: 2rem;
+  border-radius: 1rem;
+}
+
+/* WORK */
+.work {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f2cc8f;
+  color: #3d405b;
+  flex-direction: column;
+}
+.work h1 {
+  font-family: "Bebas Neue", cursive;
+}
+.work ul {
+  width: 40rem;
+  margin: 3rem 0rem 5rem 0rem;
+}
+.work ul li {
+  width: 40rem;
+}
+.work ul li p {
+  width: 40rem;
+  padding: 1rem;
+  font-style: italic;
+}
+.work ul li p span {
+  font-weight: bold;
+  font-family: "Bebas Neue", cursive;
+  letter-spacing: 1rem;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: #3d405b;
+  margin-bottom: 5rem;
 }
