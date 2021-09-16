@@ -32,13 +32,13 @@ header {
 }
 /* NAV */
 nav {
-  background-color: #f4f1de;
+  background-color: #3d405b;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 5rem;
-  color: #e07a5f;
+  color: #f4f1de;
   border-radius: 15px 15px 0px 0px;
   border: #f2cc8f 1px solid;
 }
@@ -50,7 +50,7 @@ li {
 nav a {
   text-decoration: none;
   letter-spacing: 3px;
-  color: #e07a5f;
+  color: #f4f1de;
   margin-left: 3rem;
   font-size: 15pt;
 }
@@ -58,7 +58,7 @@ nav a {
 /* Banner */
 .banner {
   width: 100%;
-  height: auto;
+  height: 500px;
   background-color: #f2cc8f;
   display: flex;
   justify-content: center;
@@ -69,15 +69,19 @@ nav a {
 }
 .banner .text {
   width: 800px;
-  height: auto;
+  height: 500px;
   border: #f4f1de 1px solid;
   border-radius: 5px;
   margin-top: 3rem;
+}
+.banner .text h1 {
+  padding: 1rem 0rem 1rem 0rem;
 }
 .banner .text q {
   font-style: italic;
   padding: 2rem 0rem 2rem 0rem;
   letter-spacing: 0.5rem;
+  width: 100%;
 }
 .banner .banner-img {
   justify-content: center;
@@ -92,16 +96,39 @@ nav a {
   border-radius: 50%;
   margin: 2rem 0rem 2rem 0rem;
   background-color: #3d405b;
-  border: #3d405b 1px solid;
 }
-.banner .banner-img img {
+.banner .banner-img .img-avatar {
   z-index: 2;
   width: 20rem;
   height: 20rem;
   /* border-radius: 50%; */
   margin: 2rem 0rem 2rem 0rem;
   clip-path: circle(40% at 50% 50%);
+  transition: all 0.5s ease;
+  display: none;
 }
+.circle-1 {
+  z-index: 0;
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin: 2rem 0rem 2rem 0rem;
+  background-color: #3d405b;
+}
+.circle-2 {
+  z-index: 0;
+  position: absolute;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  margin: 2rem 0rem 2rem 0rem;
+  background-color: #3d405b;
+}
+/* .img-avatar-toggle {
+  clip-path: circle(40% at 50% 50%);
+  transition: all 1s ease;
+} */
 
 /* PROJECTS */
 .projects {
@@ -165,4 +192,11 @@ nav a {
 footer {
   background-color: #3d405b;
   margin-bottom: 5rem;
+  color: #f4f1de;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8rem;
+  width: 100%;
+  border-radius: 0px 0px 15px 15px;
 }
