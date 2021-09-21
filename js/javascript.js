@@ -32,8 +32,16 @@ circle1.style.top = `${
     circle2.getBoundingClientRect().height)
 }px`; */
 
+let circlObjs = [];
 function CircleRandomSize() {
   return Math.floor(Math.random() * (50 - 20 + 1) + 20);
+}
+function CircleRandomSizeMoveX() {
+  return Math.floor(Math.random() * (1000 - 700 + 1) + 700);
+}
+
+function CircleRandomSizeMoveY() {
+  return Math.floor(Math.random() * (200 - 150 + 1) + 150);
 }
 
 function CicleRandomSpawnTop() {
@@ -42,7 +50,7 @@ function CicleRandomSpawnTop() {
 function CicleRandomSpawnLeft() {
   return Math.floor(Math.random() * (900 - 300 + 1) + 100);
 }
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 10; i++) {
   let circleSize = CircleRandomSize();
   banner.insertAdjacentHTML(
     "afterbegin",
@@ -56,27 +64,28 @@ for (let i = 0; i < 5; i++) {
   margin: 2rem 0rem 2rem 0rem;
   background-color: #3d405b;
   top: ${CicleRandomSpawnTop()}px;
-  left: ${CicleRandomSpawnLeft()}px;
-    transition: all 1s ease;
+  left: ${CicleRandomSpawnLeft() + 600}px;
+    transition: all 5s linear;
     "></div>`
   );
+  circlObjs.push({
+    name: `circle-${i}`,
+    top: CicleRandomSpawnTop(),
+    left: CicleRandomSpawnLeft(),
+  });
 }
-window.addEventListener(/* "resize" */ "click", function (e) {
+const circleTest = document.querySelectorAll(".circle-test");
+window.addEventListener("resize", function (e) {
   //console.log(this.innerWidth);
-  /*   circle1.style.left = `${
-    this.innerWidth - banner.getBoundingClientRect().left - 1200
-  }px`;
-  circle1.style.top = `${banner.getBoundingClientRect().top}px`;
-  circle2.style.left = `${
-    this.innerWidth - banner.getBoundingClientRect().left - 1200 / 2
-  }px`;
-  circle1.style.top = `${banner.getBoundingClientRect().top}px`; */
+  /*   circleTest.forEach((circle) => {
+    circle.style.left = `${
+      this.innerWidth - banner.getBoundingClientRect().left - 1200
+    }px`;
+    circle.style.top = `${banner.getBoundingClientRect().top}px`;
+  }); */
   //console.log(this.innerHeight - banner.getBoundingClientRect().top - 500);
   //console.log(e);
 });
-
-const circleTest = document.querySelectorAll(".circle-test");
-const elementEdge = function (element) {};
 
 const elKrastas = function (circlEl, mouseCordX, mouseCordY) {
   const circlTop = circlEl.getBoundingClientRect().top;
@@ -129,7 +138,7 @@ const moveCircle = function (circlEl, mouseX, mouseY) {
       circlEl.style.left = `${mouseX - circleWidth - 5}px`;
       break;
     case "bottom":
-      circlEl.style.top = `${mouseY - circleHeight - 5}px`;
+      circlEl.style.top = `${mouseY - circleHeight - 30}px`;
       break;
   }
 };
@@ -138,10 +147,26 @@ banner.addEventListener("mousemove", function (e) {
   let mouseX = e.x;
   let mouseY = e.y;
 
-  circleTest.forEach((circleElement) => {
+  /*   circleTest.forEach((circleElement) => {
     moveCircle(circleElement, mouseX, mouseY);
+  }); */
+
+  circleTest.forEach((circle) => {
+    let randomNx = CircleRandomSizeMoveX();
+    let randomNy = CircleRandomSizeMoveY();
+    circle.style.transform = `translate3d(${mouseX - randomNx}px, ${
+      mouseY - randomNy
+    }px, 0px)`;
+    //circle.style.transition = `all ${randomN}s linear;`;
   });
 
+  banner.addEventListener("mouseout", function () {
+    /*    circleTest.forEach((circle, i) => {
+      circle.style.left = `${circlObjs[i].left}px`;
+      circle.style.top = `${circlObjs[i].top}px`;
+      console.log(circlObjs[i].left);
+    }); */
+  });
   /*   circleTest.style.top = `${circleBound.top + e.screenY / 100}px`;
   circleTest.style.left = `${circleBound.left + e.screenX / 50}px`;
   circleTest.style.left = `${
@@ -164,7 +189,9 @@ banner.addEventListener("mousemove", function (e) {
   ); */
   //console.log(e.x);
 });
-console.log(document.querySelectorAll(".circle-test"));
+//console.log(document.querySelectorAll(".circle-test"));
+// console.log(circlObjs);
+// console.log(circleTest);
 
 //projects
 
