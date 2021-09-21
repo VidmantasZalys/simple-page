@@ -33,7 +33,7 @@ circle1.style.top = `${
 }px`; */
 
 function CircleRandomSize() {
-  return Math.floor(Math.random() * (6 - 1 + 1) + 1);
+  return Math.floor(Math.random() * (50 - 20 + 1) + 20);
 }
 
 function CicleRandomSpawnTop() {
@@ -50,47 +50,121 @@ for (let i = 0; i < 5; i++) {
     
   z-index: 0;
   position: absolute;
-  width: ${circleSize}rem;
-  height: ${circleSize}rem;
+  width: ${circleSize}px;
+  height: ${circleSize}px;
   border-radius: 50%;
   margin: 2rem 0rem 2rem 0rem;
   background-color: #3d405b;
   top: ${CicleRandomSpawnTop()}px;
   left: ${CicleRandomSpawnLeft()}px;
-    transition: all 3s ease;
+    transition: all 1s ease;
     "></div>`
   );
 }
 window.addEventListener(/* "resize" */ "click", function (e) {
   //console.log(this.innerWidth);
-  circle1.style.left = `${
+  /*   circle1.style.left = `${
     this.innerWidth - banner.getBoundingClientRect().left - 1200
   }px`;
   circle1.style.top = `${banner.getBoundingClientRect().top}px`;
   circle2.style.left = `${
     this.innerWidth - banner.getBoundingClientRect().left - 1200 / 2
   }px`;
-  circle1.style.top = `${banner.getBoundingClientRect().top}px`;
+  circle1.style.top = `${banner.getBoundingClientRect().top}px`; */
   //console.log(this.innerHeight - banner.getBoundingClientRect().top - 500);
-  console.log(e);
+  //console.log(e);
 });
 
+const circleTest = document.querySelectorAll(".circle-test");
+const elementEdge = function (element) {};
+
+const elKrastas = function (circlEl, mouseCordX, mouseCordY) {
+  const circlTop = circlEl.getBoundingClientRect().top;
+  const circlLeft = circlEl.getBoundingClientRect().left;
+  const circlBottom = circlEl.getBoundingClientRect().bottom;
+  const circlRight = circlEl.getBoundingClientRect().right;
+  let circlTopEdge = Math.abs(circlTop - mouseCordY);
+  let circlLeftEdge = Math.abs(circlLeft - mouseCordX);
+  let circlBottomEdge = Math.abs(circlBottom - mouseCordY);
+  let circlRightEdge = Math.abs(circlRight - mouseCordX);
+  let minEdge = Math.min(
+    circlTopEdge,
+    circlLeftEdge,
+    circlBottomEdge,
+    circlRightEdge
+  );
+  let position;
+  switch (minEdge) {
+    case circlTopEdge:
+      position = "top";
+      break;
+    case circlLeftEdge:
+      position = "left";
+      break;
+    case circlBottomEdge:
+      position = "bottom";
+      break;
+    case circlRightEdge:
+      position = "right";
+      break;
+  }
+
+  console.log(circlRightEdge);
+  return position;
+};
+
+const moveCircle = function (circlEl, mouseX, mouseY) {
+  let elementKrastas = elKrastas(circlEl, mouseX, mouseY);
+  let circleWidth = circlEl.getBoundingClientRect().width;
+  let circleHeight = circlEl.getBoundingClientRect().height;
+  let circleBound = circlEl.getBoundingClientRect();
+  switch (elementKrastas) {
+    case "top":
+      circlEl.style.top = `${mouseY + 5}px`;
+      break;
+    case "left":
+      circlEl.style.left = `${mouseX + 5}px`;
+      break;
+    case "right":
+      circlEl.style.left = `${mouseX - circleWidth - 5}px`;
+      break;
+    case "bottom":
+      circlEl.style.top = `${mouseY - circleHeight - 5}px`;
+      break;
+  }
+};
+
 banner.addEventListener("mousemove", function (e) {
-  let circleTest = document.querySelector(".circle-test");
+  let mouseX = e.x;
+  let mouseY = e.y;
+
+  circleTest.forEach((circleElement) => {
+    moveCircle(circleElement, mouseX, mouseY);
+  });
+
+  /*   circleTest.style.top = `${circleBound.top + e.screenY / 100}px`;
+  circleTest.style.left = `${circleBound.left + e.screenX / 50}px`;
+  circleTest.style.left = `${
+    circleBound.left + (e.screenX - circleWidth) / 50
+  }px`;
+  circleTest.style.top = `${
+    circleBound.top + (e.screenY - circleHeight) / 100
+  }px`; */
   /*   if (e.screenX) {
     circleTest.style.left = `${circleTest.getBoundingClientRect().left + 5}px`;
   } else if (e.screenY) {
     circleTest.style.top = `${circleTest.getBoundingClientRect().top + 5}px`;
   } */
-  circleTest.style.marginLeft = `${e.screenX / 20}px`;
+  /*   circleTest.style.marginLeft = `${e.screenX / 20}px`;
   circleTest.style.marginTop = `${e.screenY}px`;
 
   console.log(
     circleTest.getBoundingClientRect().top +
       (circleTest.getBoundingClientRect().top - e.screenY) / 200
-  );
+  ); */
+  //console.log(e.x);
 });
-//console.log(banner.getBoundingClientRect().top);
+console.log(document.querySelectorAll(".circle-test"));
 
 //projects
 
