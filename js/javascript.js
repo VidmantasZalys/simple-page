@@ -1,6 +1,7 @@
 // selectors
 const nav = document.querySelectorAll("nav");
 const banner = document.querySelector(".banner");
+const movingArea = document.querySelector(".moving-area");
 const imgAvatar = document.querySelector(".img-avatar");
 const circle1 = document.querySelector(".circle-1");
 const circle2 = document.querySelector(".circle-2");
@@ -52,7 +53,7 @@ function CicleRandomSpawnLeft() {
 }
 for (let i = 0; i < 10; i++) {
   let circleSize = CircleRandomSize();
-  banner.insertAdjacentHTML(
+  movingArea.insertAdjacentHTML(
     "afterbegin",
     `<div class="circle-test" data-crcl="circle-${i}" style="
     
@@ -87,63 +88,7 @@ window.addEventListener("resize", function (e) {
   //console.log(e);
 });
 
-const elKrastas = function (circlEl, mouseCordX, mouseCordY) {
-  const circlTop = circlEl.getBoundingClientRect().top;
-  const circlLeft = circlEl.getBoundingClientRect().left;
-  const circlBottom = circlEl.getBoundingClientRect().bottom;
-  const circlRight = circlEl.getBoundingClientRect().right;
-  let circlTopEdge = Math.abs(circlTop - mouseCordY);
-  let circlLeftEdge = Math.abs(circlLeft - mouseCordX);
-  let circlBottomEdge = Math.abs(circlBottom - mouseCordY);
-  let circlRightEdge = Math.abs(circlRight - mouseCordX);
-  let minEdge = Math.min(
-    circlTopEdge,
-    circlLeftEdge,
-    circlBottomEdge,
-    circlRightEdge
-  );
-  let position;
-  switch (minEdge) {
-    case circlTopEdge:
-      position = "top";
-      break;
-    case circlLeftEdge:
-      position = "left";
-      break;
-    case circlBottomEdge:
-      position = "bottom";
-      break;
-    case circlRightEdge:
-      position = "right";
-      break;
-  }
-
-  console.log(circlRightEdge);
-  return position;
-};
-
-const moveCircle = function (circlEl, mouseX, mouseY) {
-  let elementKrastas = elKrastas(circlEl, mouseX, mouseY);
-  let circleWidth = circlEl.getBoundingClientRect().width;
-  let circleHeight = circlEl.getBoundingClientRect().height;
-  let circleBound = circlEl.getBoundingClientRect();
-  switch (elementKrastas) {
-    case "top":
-      circlEl.style.top = `${mouseY + 5}px`;
-      break;
-    case "left":
-      circlEl.style.left = `${mouseX + 5}px`;
-      break;
-    case "right":
-      circlEl.style.left = `${mouseX - circleWidth - 5}px`;
-      break;
-    case "bottom":
-      circlEl.style.top = `${mouseY - circleHeight - 30}px`;
-      break;
-  }
-};
-
-banner.addEventListener("mousemove", function (e) {
+movingArea.addEventListener("mousemove", function (e) {
   let mouseX = e.x;
   let mouseY = e.y;
 
@@ -151,22 +96,24 @@ banner.addEventListener("mousemove", function (e) {
     moveCircle(circleElement, mouseX, mouseY);
   }); */
 
+  //if(e.target.classList.contains() )
+
   circleTest.forEach((circle) => {
     let randomNx = CircleRandomSizeMoveX();
     let randomNy = CircleRandomSizeMoveY();
-    circle.style.transform = `translate3d(${mouseX - randomNx}px, ${
-      mouseY - randomNy
-    }px, 0px)`;
+
+    if (mouseX > 352 || mouseX < 1550 || mouseY > 126 || mouseY < 237) {
+      circle.style.transform = `translate3d(${mouseX - randomNx}px, ${
+        mouseY - randomNy
+      }px, 0px)`;
+    }
+
+    // circle.style.left = `${mouseX - randomNx}px`;
+    // circle.style.top = `${mouseY - randomNy}px`;
     //circle.style.transition = `all ${randomN}s linear;`;
+    console.log(e.target);
   });
 
-  banner.addEventListener("mouseout", function () {
-    /*    circleTest.forEach((circle, i) => {
-      circle.style.left = `${circlObjs[i].left}px`;
-      circle.style.top = `${circlObjs[i].top}px`;
-      console.log(circlObjs[i].left);
-    }); */
-  });
   /*   circleTest.style.top = `${circleBound.top + e.screenY / 100}px`;
   circleTest.style.left = `${circleBound.left + e.screenX / 50}px`;
   circleTest.style.left = `${
@@ -189,9 +136,24 @@ banner.addEventListener("mousemove", function (e) {
   ); */
   //console.log(e.x);
 });
+movingArea.addEventListener("mouseout", function () {
+  // if (e.target.classList.contains("banner")) {
+  //   console.log(e.target);
+  // }
+  circleTest.forEach((circle, i) => {
+    /*     circle.style.left = `${circlObjs[i].left}px`;
+    circle.style.top = `${circlObjs[i].top}px`; */
+    //circle.style.transform = `translate3d(${circlObjs[i].left}px, ${circlObjs[i].top}px, 1200px)`;
+    //circle.style.transform = `translate3d(200px, 500px, 1200px)`;
+    circle.style.left = `${circlObjs[i].left + 600}px`;
+    circle.style.top = `${circlObjs[i].top}px`;
+    circle.style.transform = `translate3d(0px, 0px, 0px)`;
+    console.log(circle);
+  });
+});
 //console.log(document.querySelectorAll(".circle-test"));
 // console.log(circlObjs);
-// console.log(circleTest);
+//console.log(circlObjs[3].name, circlObjs[3].top, circlObjs[3].left);
 
 //projects
 
