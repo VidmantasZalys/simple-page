@@ -108,13 +108,15 @@ nav a {
   margin: 2rem 0rem 2rem 0rem;
   clip-path: circle(40% at 50% 50%);
   transition: all 0.5s ease;
-  display: none;
 }
-.banner .moving-area {
+/* .banner .moving-area {
   width: 20rem;
   height: 20rem;
   border-radius: 50%;
   background-color: red;
+}
+.banner .circle-test {
+  clip: 10px, 100px, 75px, 5px;
 }
 .circle-1 {
   z-index: 0;
@@ -133,7 +135,7 @@ nav a {
   border-radius: 50%;
   margin: 2rem 0rem 2rem 0rem;
   background-color: #3d405b;
-}
+} */
 /* .img-avatar-toggle {
   clip-path: circle(40% at 50% 50%);
   transition: all 1s ease;
