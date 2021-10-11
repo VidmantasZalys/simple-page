@@ -77,7 +77,6 @@ nav a {
 }
 .banner .text {
   width: 800px;
-  height: 500px;
   border: #f4f1de 1px solid;
   border-radius: 5px;
   margin-top: 3rem;
@@ -217,9 +216,15 @@ nav a {
   top: 0px;
   left: 0px;
   overflow: auto;
-  display: none;
   justify-content: center;
   align-items: center;
+  display: flex;
+}
+.work-box-modal-body-sh {
+  display: flex !important;
+}
+.work-box-modal-body-hidden {
+  display: none !important;
 }
 .work-box {
   width: 500px;
@@ -230,22 +235,17 @@ nav a {
   box-shadow: 0px 0px 26px -5px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0px 0px 26px -5px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 26px -5px rgba(0, 0, 0, 0.5);
-  opacity: 0;
+  /* opacity: 0; */
   transition: all 1s ease;
 }
 
-.work-box-close::after {
-  float: right;
-  cursor: pointer;
-  content: "\00d7";
-  font-size: 30pt;
-}
-/* .work-box-close button {
+.work-box-close button {
   float: right;
   display: inline-block;
   cursor: pointer;
   content: "\00d7";
-} */
+}
+
 /* FOOTER */
 footer {
   background-color: #3d405b;
