@@ -238,7 +238,9 @@ nav a {
   /* opacity: 0; */
   transition: all 1s ease;
 }
-
+.work-box-close {
+  width: 100%;
+}
 .work-box-close button {
   float: right;
   display: inline-block;
