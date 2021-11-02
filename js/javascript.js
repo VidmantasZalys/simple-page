@@ -1,6 +1,7 @@
 "use strict";
 // selectors
-const nav = document.querySelectorAll("nav");
+const header = document.querySelector(".header");
+const nav = document.querySelector(".nav-bar");
 const banner = document.querySelector(".banner");
 const movingArea = document.querySelector(".moving-area");
 const imgAvatar = document.querySelector(".img-avatar");
@@ -12,7 +13,25 @@ const wokBoxModalText = document.querySelector(".work-box-modal-txt");
 const workBoxModalBody = document.querySelector(".work-box-modal-body");
 const workBoxCloseBtn = document.querySelector(".work-box-close-btn");
 //nav
+const navObsEff = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
+    nav.classList.toggle("nav-scroll");
+  } else {
+    nav.classList.remove("nav-scroll");
+  }
 
+  //entry.target.classList.remove("nav-scroll");
+  //observer.unobserve(entry.target);
+  console.log(entry);
+};
+const navObserver = new IntersectionObserver(navObsEff, {
+  root: null,
+  threshold: 0,
+  rootMargin: `${-nav.getBoundingClientRect().height}px`,
+});
+console.log(header.getBoundingClientRect().height);
+navObserver.observe(header);
 //banner
 banner.addEventListener("mouseout", function (e) {
   imgAvatar.style.clipPath = `circle(40% at 50% 50%)`;
